@@ -26,30 +26,27 @@ The SimpleDB Node.js middleware component serves as an intermediary between WebS
    cd SimpleDBJS-Middleware
    ```
 
-### Install Dependencies:
+2. **Install Dependencies**:
+   ```sh
+   npm install
+   ```
 
-```sh
-npm install
-```
-
-### Run the Server:
-
-```sh
-node src/index.js
-```
+3. **Run the Server**:
+   ```sh
+   node src/index.js
+   ```
 
 ## Using Docker:
 
-### Build the Docker image:
+1. **Build the Docker image**:
+   ```sh
+   docker build -t simpledbjs-middleware .
+   ```
 
-```sh
-docker build -t simpledbjs-middleware .
-```
-
-### Run the Docker container:
-```sh
-docker run -p 9000:9000 -e SIMPLEDB_PORT=your_simpledb_port -e SIMPLEDB_HOST=your_simpledb_host -e WEBSOCKET_PORT=your_websocket_port simpledbjs-middleware
-```
+2. **Run the Docker container**:
+   ```sh
+   docker run -p 9000:9000 -e SIMPLEDB_PORT=your_simpledb_port -e SIMPLEDB_HOST=your_simpledb_host -e WEBSOCKET_PORT=your_websocket_port simpledbjs-middleware
+   ```
 
 ## Usage
 
