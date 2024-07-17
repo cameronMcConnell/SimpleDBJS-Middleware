@@ -36,7 +36,7 @@ wss.on("connection", (ws) => {
     })
 
     tcpClient.on("data", async (data) => {
-        const data = data.toString();
+        data = data.toString();
         console.log("Received data from SimpleDB: ", data);
 
         if (isValidCSV(data)) {
