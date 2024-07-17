@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cameronMcConnell/SimpleDBJS-Middleware#readme",
   "dependencies": {
+    "csvtojson": "^2.0.10",
     "ws": "^8.18.0"
   }
 }
