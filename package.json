@@ -1,0 +1,22 @@
+{
+  "name": "simpledbjs-middleware",
+  "version": "1.0.0",
+  "description": "The SimpleDB Node.js middleware component serves as an intermediary between WebSocket clients and the SimpleDB C++ TCP server. This component enables seamless communication by translating WebSocket messages into TCP messages and vice versa.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronMcConnell/SimpleDBJS-Middleware.git"
+  },
+  "author": "Cameron McConnell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cameronMcConnell/SimpleDBJS-Middleware/issues"
+  },
+  "homepage": "https://github.com/cameronMcConnell/SimpleDBJS-Middleware#readme",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
