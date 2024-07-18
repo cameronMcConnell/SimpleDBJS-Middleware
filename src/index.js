@@ -8,20 +8,6 @@ const WEBSOCKET_PORT = process.env.WEBSOCKET_PORT | 8081;
 
 const wss = new WebSocket.Server({port: WEBSOCKET_PORT});
 
-function isValidCSV(data) {
-    const csvRegex = /^((?:"[^"]*(?:""[^"]*)*"|[^",\r\n]*)(?:,(?:"[^"]*(?:""[^"]*)*"|[^",\r\n]*))*)$/gm;
-
-    const lines = data.split(/\r?\n/);
-
-    for (let line of lines) {
-        if (!csvRegex.test(line.trim())) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 wss.on("connection", (ws) => {
     console.log("Websocket client connected");
 
@@ -36,18 +22,21 @@ wss.on("connection", (ws) => {
     })
 
     tcpClient.on("data", async (data) => {
-        data = data.toString();
+        data = data.toString("utf-8");
         console.log("Received data from SimpleDB: ", data);
 
-        if (isValidCSV(data)) {
-            try {
-                const message = JSON.stringify({output: await csvtojson().fromString(data)});
+        try {
+            const jsonCSV = await csvtojson().fromString(data);
+            if (jsonCSV.length === 0) {
+                const message = JSON.stringify({output: data});
                 ws.send(message);
-            } catch (err) {
-                console.error("Error trying to parse csv text: ", err);
+            } else {
+                const message = JSON.stringify({output: JSON.stringify(jsonCSV)});
+                ws.send(message);
             }
-        } else {
-            const message = JSON.stringify({output: data});
+        } catch (err) {
+            console.error("Error trying to parse csv text: ", err);
+            const message = JSON.stringify({output: err});
             ws.send(message);
         }
     })
